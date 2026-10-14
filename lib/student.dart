@@ -1,5 +1,8 @@
+import 'logger.dart';
+
 /// 单个学生：成绩册里的最小建模单元。
-class Student {
+/// 混入 Logger：改分时留一条记录。日志是「能力」不是「身份」，用 mixin 而非继承。
+class Student with Logger {
   final String id;
   final String name;
   double _score; // 下划线前缀 = 库内私有
@@ -21,6 +24,7 @@ class Student {
   set score(double v) {
     if (v < 0 || v > 100) throw ArgumentError('分数越界：$v');
     _score = v;
+    log('$name 分数更新为 $v');
   }
 
   bool get passed => _score >= 60;

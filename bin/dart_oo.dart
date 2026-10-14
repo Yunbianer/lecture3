@@ -27,5 +27,8 @@ void main() {
     print('$grade(${list.length})：$names');
   }
 
+  print('及格分数（降序）：${book.passedScoresDesc}');
+
+  students.first.score = 100; // setter 带校验 + 混入 Logger 的改分记录
   book.log('统计完成'); // 来自 mixin Logger，方括号里是运行时类型
 }

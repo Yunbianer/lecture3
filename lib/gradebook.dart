@@ -36,6 +36,14 @@ class GradeBook with Logger {
         return acc;
       });
 
+  /// 及格学生分数（降序）—— 一组统计由 6 个链式调用串成：
+  /// `where → map → toList → sort → map → join`，全程不手写 for。
+  String get passedScoresDesc {
+    final scores = _students.where((s) => s.passed).map((s) => s.score).toList()
+      ..sort((a, b) => b.compareTo(a));
+    return scores.map((v) => v.toStringAsFixed(0)).join('、');
+  }
+
   static String _gradeOf(double score) {
     if (score >= 90) return '优';
     if (score >= 80) return '良';

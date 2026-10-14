@@ -35,6 +35,10 @@ void main() {
       expect(grouped['不及格']?.map((s) => s.name).toList(), ['王芳']);
       expect(grouped.containsKey('良'), isFalse); // 本组无人落入「良」
     });
+
+    test('passedScoresDesc 链式统计正确', () {
+      expect(book.passedScoresDesc, '92、90、78');
+    });
   });
 
   test('越界分数抛 ArgumentError', () {
