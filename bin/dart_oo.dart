@@ -26,4 +26,6 @@ void main() {
     final names = list.map((s) => s.name).join('、');
     print('$grade(${list.length})：$names');
   }
+
+  book.log('统计完成'); // 来自 mixin Logger，方括号里是运行时类型
 }

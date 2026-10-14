@@ -1,7 +1,9 @@
+import 'logger.dart';
 import 'student.dart';
 
 /// 课程成绩册：内部持有一份学生列表。
-class GradeBook {
+/// 混入 Logger 获得 log 能力（日志不是继承关系，用 mixin 跨类复用）。
+class GradeBook with Logger {
   final List<Student> _students;
 
   /// 构造时复制一份，避免与外部列表共享同一个对象。
