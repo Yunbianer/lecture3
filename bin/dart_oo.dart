@@ -10,12 +10,20 @@ void main() {
   ];
 
   final book = GradeBook(students);
+
   for (final s in book.students) {
     print('${s.id} ${s.name} 分数=${s.score} 及格=${s.passed}');
   }
   print(book);
 
-  students.first.score = 100; // setter 正常
-  // students.first.score = 200; // 取消注释会抛 ArgumentError
-  print('改分后：${students.first.name} -> ${students.first.score}');
+  print('平均分：${book.average}');
+  print('最高分：${book.maxBy?.name} (${book.maxBy?.score})');
+  print('及格人数：${book.countPassed} / ${book.count}');
+
+  final grouped = book.groupByGrade;
+  for (final grade in ['优', '良', '中', '不及格']) {
+    final list = grouped[grade] ?? const <Student>[];
+    final names = list.map((s) => s.name).join('、');
+    print('$grade(${list.length})：$names');
+  }
 }
